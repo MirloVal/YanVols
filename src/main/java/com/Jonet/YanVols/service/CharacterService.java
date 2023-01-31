@@ -4,11 +4,11 @@ import com.Jonet.YanVols.exceptions.YanVolsException;
 import com.Jonet.YanVols.model.Character;
 import com.Jonet.YanVols.model.Rarity;
 import com.Jonet.YanVols.repository.CharacterRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Service
 public class CharacterService {
@@ -29,8 +29,12 @@ public class CharacterService {
     public List<Character> findAll() {
         List<Character> list = characterRepository.findAll();
         if (list.isEmpty()){
-            throw new YanVolsException("Not Characters Found", HttpStatus.BAD_REQUEST);
+            throw new YanVolsException("Not Characters Found", NOT_FOUND);
         }
         return characterRepository.findAll();
+    }
+
+    public Character getCharacter(Long id) {
+        return characterRepository.findById(id).orElseThrow(()-> new YanVolsException("Character not found", NOT_FOUND));
     }
 }

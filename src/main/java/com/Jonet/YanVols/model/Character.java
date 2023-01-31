@@ -2,7 +2,8 @@ package com.Jonet.YanVols.model;
 
 import jakarta.persistence.*;
 import org.springframework.data.relational.core.mapping.Column;
-
+@Entity
+@Table(name="characters")
 public class Character {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
