@@ -8,6 +8,7 @@ public class YanVolsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(YanVolsApplication.class, args);
+		System.out.println("hola");
 	}
 
 }
